@@ -12,5 +12,7 @@ jobs:
         NODE_ENV: development
       options: --cpus 1
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Check for dockerenv file
-        run: ls -alih /github/workspace
+        run: pwd ; ls -alih 
