@@ -4,16 +4,13 @@ on:
 name: BUILD | backend container
 
 jobs:
-  docker-publish:
-    name: docker-publish
+  container-test-job:
     runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Build, tag, and push the image to Amazon ECR
-      id: build-image
+    container:
+      image: node:18
       env:
-        REPO_FQDN: ${{ github.ref_name }}
-      run: |
-        echo $REPO_FQDN
+        NODE_ENV: development
+      options: --cpus 1
+    steps:
+      - name: Check for dockerenv file
+        run: ls -alih
