@@ -18,5 +18,6 @@ jobs:
           cat .env.local > tmp.env.local || true
           echo '${{ toJSON(secrets) }}' | jq -r 'keys[] as $k | "\($k)=\(.[$k])"' >> tmp.env.local
           cat tmp.env.local >> $GITHUB_ENV
+          source tmp.env.local
       - name: Check after for dockerenv file
         run: pwd ; ls -alih ; env
