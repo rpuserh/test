@@ -16,7 +16,7 @@ jobs:
       - name: Set env vars
         run: |
           echo '${{ toJSON(secrets) }}' | jq -r 'keys[] as $k | "\($k)=\(.[$k])"' >> $GITHUB_ENV
-          source .env.local
+          cat .env.local >> $GITHUB_ENV
           env
       - name: Check after for dockerenv file
         run: pwd ; ls -alih ; env
