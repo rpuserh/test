@@ -19,4 +19,4 @@ jobs:
           cat .env.local >> $GITHUB_ENV
           env
       - name: Check after for dockerenv file
-        run: pwd ; ls -alih ; env
+        run: pwd ; ls -alih ; env; echo $FFFFF
