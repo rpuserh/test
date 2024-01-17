@@ -23,4 +23,10 @@ jobs:
 
           env
       - name: Check after for dockerenv file
-        run: echo '${{ fromJson(env.tf_auto_ws) }}'
+        env:
+          MY_ENV_VAR: ${{ github.event_name == 'schedule' && 'auto' || 'manual' }}
+        run: echo $MY_ENV_VAR
+          # contains(fromJson('${{ fromJson(env.tf_auto_ws) }}'), github.event.action) echo 
+
+
+            
