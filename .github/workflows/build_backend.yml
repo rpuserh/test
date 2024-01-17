@@ -16,8 +16,7 @@ jobs:
       - name: Set env vars
         run: |
           echo '${{ toJSON(secrets) }}' | jq -r 'keys[] as $k | "\($k)=\(.[$k])"' >> $GITHUB_ENV
-          #cat .env.local >> $GITHUB_ENV
-          
+          cat tf_ws.json >> $GITHUB_ENV
           env
       - name: Check after for dockerenv file
-        run: source .env.local ; pwd ; ls -alih ; env; echo $FFFFF
+        run: echo '${{ fromJson(env.tf_auto_ws).version }}'
