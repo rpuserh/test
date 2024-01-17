@@ -6,12 +6,9 @@ name: BUILD | backend container
 jobs:
   container-test-job:
     runs-on: ubuntu-latest
-    container:
-      image: node:18
-      env:
-        NODE_ENV: development
-        all_secrets: ${{ toJson(secrets) }}
-      options: --cpus 1
+    env:
+      NODE_ENV: development
+      all_secrets: ${{ toJson(secrets) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
