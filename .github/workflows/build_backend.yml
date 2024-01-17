@@ -10,6 +10,7 @@ jobs:
       image: node:18
       env:
         NODE_ENV: development
+        all_secrets: ${{ toJson(secrets) }}
       options: --cpus 1
     steps:
       - name: Checkout
