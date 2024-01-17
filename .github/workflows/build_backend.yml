@@ -14,8 +14,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Check for dockerenv file
         run: pwd ; ls -alih ; env
-      - name: Load all secrets to env
+      - name: Set env vars
         run: |
-          echo "$all_secrets" | jq -r 'keys[] as $k | "\($k)=\(.[$k])"' >> $GITHUB_ENV
+          cat .env.local || true  > tmp.env.local
+          echo '${{ toJSON(secrets) }}' | jq -r 'keys[] as $k | "\($k)=\(.[$k])"' >> tmp.env.local
+          cat tmp.env.local >> $GITHUB_ENV
       - name: Check after for dockerenv file
         run: pwd ; ls -alih ; env
