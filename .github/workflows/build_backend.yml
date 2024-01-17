@@ -15,4 +15,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Check for dockerenv file
-        run: pwd ; ls -alih 
+        run: pwd ; ls -alih ; env
